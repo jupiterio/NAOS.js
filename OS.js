@@ -1,21 +1,23 @@
 let titleTemp = document.createElement("div");
 titleTemp.className = "titlebar";
 
-let icon = document.createElement("img");
-icon.className = "icon";
-icon.src = "assets/window/untitled.png";
+let icon = document.createElement("i");
+icon.className = "icon fa fa-file-text";
+icon.setAttribute("aria-hidden", "true");
 
 let titleText = document.createElement("div");
 titleText.className = "titleText";
-titleText.appendChild(document.createTextNode("Untitled"));
+titleText.appendChild(document.createTextNode("No Name"));
 
-let closeButton = document.createElement("input");
-closeButton.type = "button";
-let maximizeButton = closeButton.cloneNode();
-maximizeButton.className = "maximizeButton";
-let minimizeButton = closeButton.cloneNode();
-minimizeButton.className = "minimizeButton";
+let closeButton = document.createElement("a");
+closeButton.innerHTML = '<i class="fa fa-window-close" aria-hidden="true"></i>';
 closeButton.className = "closeButton";
+let maximizeButton = document.createElement("a");
+maximizeButton.innerHTML = '<i class="fa fa-window-maximize" aria-hidden="true"></i>';
+maximizeButton.className = "maximizeButton";
+let minimizeButton = document.createElement("a");
+minimizeButton.innerHTML = '<i class="fa fa-window-minimize" aria-hidden="true"></i>';
+minimizeButton.className = "minimizeButton";
 
 let controlButtons = document.createElement("div")
 controlButtons.className = "controlButtons";

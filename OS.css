@@ -60,11 +60,13 @@ body {
 }
 
 .titlebar > .icon {
-    width: 16px;
-    height: 16px;
+    width: 32px;
+    height: 32px;
     float: left;
-    margin: 8px;
-    margin-right: 12px;
+    margin-right: 4px;
+    
+    text-align: center;
+    line-height: 32px;
 }
 
 .titlebar > .titleText {
@@ -82,20 +84,16 @@ body {
     top: 0px;
 }
 
-.titlebar > .controlButtons > input[type='button'] {
+.titlebar > .controlButtons > a {
+    display: inline-block;
     width: 42px;
     height: 32px;
-    border: none;
     background-color: #404040;
     
-    background-repeat: no-repeat;
-    background-position: center;
+    text-align: center;
+    line-height: 32px;
     
     transition: all 0.25s;
-}
-
-.titlebar > .controlButtons > .closeButton {
-    background-image: url('assets/window/closeButton.png');
 }
 
 .titlebar > .controlButtons > .closeButton:hover {
@@ -104,14 +102,6 @@ body {
 
 .titlebar  > .controlButtons > .closeButton:active {
     background-color: #F34D4D;
-}
-
-.titlebar > .controlButtons > .maximizeButton {
-    background-image: url('assets/window/maximizeButton.png');
-}
-
-.titlebar > .controlButtons > .minimizeButton {
-    background-image: url('assets/window/minimizeButton.png');
 }
 
 .titlebar > .controlButtons > .maximizeButton:hover,

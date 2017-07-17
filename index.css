@@ -1,0 +1,32 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#notice {
+    background-color: #FF708C;
+    height: 100%;
+    overflow: hidden;
+    
+    font-family: 'Lobster', sans-serif;
+}
+
+#notice div {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+#notice span {
+    display: table-cell;
+    vertical-align: middle;
+    
+    text-align: center;
+    text-shadow: 4px 4px #D65E76;
+    color: #56FF94;
+    font-weight: bold;
+    font-size: 3em;
+    
+    transform: rotate(-2deg);
+}

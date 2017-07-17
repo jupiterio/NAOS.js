@@ -30,31 +30,35 @@ titleTemp.appendChild(controlButtons);
 let openWindows = [];
 
 let reZWindows = function(){
-    openWindows.map((d, i)=>{d.element.style.zIndex = i;});
+  openWindows.map((d, i)=>{d.element.style.zIndex = i;});
 }
 
 let titleDown = win=>e=>{
-    win.dragged = true;
-    win.offsetY = e.clientY - win.y;
-    win.offsetX = e.clientX - win.x;
+  win.dragged = true;
+  win.offsetY = e.clientY - win.y;
+  win.offsetX = e.clientX - win.x;
 }
 
 let titleMove = win=>function(e){
-    if (win.dragged) {
-        win.y = e.clientY - win.offsetY;
-        win.y = win.y > 40 ? win.y : 40;
-        win.x = e.clientX - win.offsetX;
-        win.element.style.top = win.y.toString() + "px";
-        win.element.style.left = win.x.toString() + "px";
-    }
+  if (win.dragged) {
+    win.y = e.clientY - win.offsetY;
+    win.x = e.clientX - win.offsetX;
+  }
 }
 
 let titleUp = win=>()=>{win.dragged = false;}
 
+window.addEventListener("resize", function(){
+  openWindows.map(win=>{
+    win.x = win.x;
+    win.y = win.y;
+  });
+});
+
 class Window {
   constructor(x, y, width, height, options) {
-    this.x = x;
-    this.y = y;
+    this._x = x;
+    this._y = y;
     this.width = width;
     this.height = height;
     this.type = options.type;
@@ -66,18 +70,18 @@ class Window {
     this.element.style.top = this.y.toString() + "px";
     this.element.style.left = this.x.toString() + "px";
     this.element.addEventListener("mousedown", (function(){
-        openWindows.splice(openWindows.indexOf(this), 1);
-        openWindows.push(this);
-        reZWindows();
+      openWindows.splice(openWindows.indexOf(this), 1);
+      openWindows.push(this);
+      reZWindows();
     }).bind(this));
     
     let titlebar = titleTemp.cloneNode(true);
     
     if (options.title)
-        titlebar.getElementsByClassName("titleText")[0].innerText = options.title;
+      titlebar.getElementsByClassName("titleText")[0].innerText = options.title;
     
     if (options.icon)
-        titlebar.getElementsByClassName("icon")[0].src = options.icon;
+      titlebar.getElementsByClassName("icon")[0].src = options.icon;
     
     titlebar.getElementsByClassName("closeButton")[0].addEventListener("click", this.close.bind(this))
     titlebar.getElementsByClassName("icon")[0].addEventListener("dragstart", function(e) { e.preventDefault(); return false; });
@@ -96,14 +100,33 @@ class Window {
     this.open();
   }
   
-  close(){
-      this.element.parentElement.removeChild(this.element);
-      openWindows.splice(openWindows.indexOf(this), 1);
+  close() {
+    this.element.parentElement.removeChild(this.element);
+    openWindows.splice(openWindows.indexOf(this), 1);
   }
   
-  open(){
-      document.body.appendChild(this.element);
-      openWindows.push(this);
-      reZWindows();
+  open() {
+    document.body.appendChild(this.element);
+    openWindows.push(this);
+    reZWindows();
+  }
+  
+  set y(v) {
+    this._y = v;
+    this._y = this._y < window.innerHeight - 40 - 32 ? this._y : window.innerHeight - 40 - 32;
+    this.element.style.top = this._y.toString() + "px";
+  }
+  
+  get y(){
+    return this._y
+  }
+  
+  set x(v) {
+    this._x = v;
+    this.element.style.left = this.x.toString() + "px";
+  }
+  
+  get x(){
+    return this._x
   }
 }

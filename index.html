@@ -9,20 +9,23 @@
     <div id="notice"><div><span>Oh! No scripts?<br>Try turning them on!</span></div></div>
   </body>
   <script async>
+    document.querySelector("#notice span").innerHTML = 'NAOS.js<br><i class="fa fa-3x fa-cog fa-spin" aria-hidden="true"></i>'
     window.addEventListener("load", function(){
-      document.body.innerHTML = "";
-      
-      var taskbar = document.createElement("div");
-      taskbar.id = "taskbar";
-      /* temporary */ taskbar.innerHTML = `<input type="button" onclick="new Window(Math.floor(Math.random()*(100-40))+40, Math.floor(Math.random()*(100-40))+40, Math.floor(Math.random()*(400-180))+180, Math.floor(Math.random()*(400-180))+180, {content: document.createTextNode('Hello, World!')})">`;
-      document.body.appendChild(taskbar);
-      
-      var mainScript = document.createElement("script");
-      mainScript.src = "OS.js";
-      document.body.appendChild(mainScript);
-      
-      document.getElementById("page-style").href = "OS.css";
-      document.getElementById("page-fonts").href = "https://fonts.googleapis.com/css?family=Open+Sans|Share";
+      setTimeout(function(){
+        document.body.innerHTML = "";
+        
+        var taskbar = document.createElement("div");
+        taskbar.id = "taskbar";
+        /* temporary */ taskbar.innerHTML = `<input type="button" onclick="new Window(Math.floor(Math.random()*(100-40))+40, Math.floor(Math.random()*(100-40))+40, Math.floor(Math.random()*(400-180))+180, Math.floor(Math.random()*(400-180))+180, {content: document.createTextNode('Hello, World!')})">`;
+        document.body.appendChild(taskbar);
+        
+        var mainScript = document.createElement("script");
+        mainScript.src = "OS.js";
+        document.body.appendChild(mainScript);
+        
+        document.getElementById("page-style").href = "OS.css";
+        document.getElementById("page-fonts").href = "https://fonts.googleapis.com/css?family=Open+Sans|Share";
+      }, 5000);
     });
   </script>
 </html>
